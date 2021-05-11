@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $this->sendWebPushNotification("Hello Ateeq!");
+        // $this->sendWebPushNotification("Hello Ateeq!");
         
         return view('welcome');
         return view('home');

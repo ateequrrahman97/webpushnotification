@@ -67,6 +67,10 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .dropdown.dropdown-notifications {
+                display: inline !important;
+            }
         </style>
 
         {{-- <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
