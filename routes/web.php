@@ -22,3 +22,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::post('/push','PushController@store');
 //make a push notification.
 Route::get('/push','PushController@push')->name('push');
+Route::get('test', function () {
+    event(new App\Events\SendPushNotification('Someone', 'Message'));
+    return "Event has been sent!";
+});
