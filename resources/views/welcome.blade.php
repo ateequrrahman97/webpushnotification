@@ -68,9 +68,9 @@
                 margin-bottom: 30px;
             }
 
-            .dropdown.dropdown-notifications {
+            /* .dropdown.dropdown-notifications {
                 display: inline !important;
-            }
+            } */
         </style>
 
         {{-- <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
@@ -164,9 +164,12 @@
         </div>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="//js.pusher.com/3.1/pusher.min.js"></script>
+    {{-- <script src="https://js.pusher.com/7.0/pusher.min.js"></script> --}}
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
+     // Enable pusher logging - don't include this in production
+     Pusher.logToConsole = true;
       var notificationsWrapper   = $('.dropdown-notifications');
       var notificationsToggle    = notificationsWrapper.find('a[data-toggle]');
       var notificationsCountElem = notificationsToggle.find('i[data-count]');
@@ -182,14 +185,15 @@
 
       var pusher = new Pusher('9ac2593324a10020ff43', {
         cluster: 'ap2',
-        encrypted: true
+        // encrypted: true
       });
 
       // Subscribe to the channel we specified in our Laravel Event
       var channel = pusher.subscribe('notification-sent');
 
       // Bind a function to a Event (the full Laravel class)
-      channel.bind('App\\Events\\StatusLiked', function(data) {
+      channel.bind('App\\Events\\SendPushNotification', function(data) {
+        console.log(JSON.stringify(data));
         var existingNotifications = notifications.html();
         var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
         var newNotificationHtml = `
