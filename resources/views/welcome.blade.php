@@ -192,7 +192,8 @@
       var channel = pusher.subscribe('notification-sent');
 
       // Bind a function to a Event (the full Laravel class)
-      channel.bind('App\\Events\\SendPushNotification', function(data) {
+    //   channel.bind('App\\Events\\SendPushNotification', function(data) {
+      channel.bind('push_event', function(data) {
         console.log(JSON.stringify(data));
         var existingNotifications = notifications.html();
         var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
@@ -201,7 +202,7 @@
               <div class="media">
                 <div class="media-left">
                   <div class="media-object">
-                    <img src="https://api.adorable.io/avatars/71/`+avatar+`.png" class="img-circle" alt="50x50" style="width: 50px; height: 50px;">
+                    <img src="https://influencerhub.us/assets/layouts/layout/img/favicon_2.png" class="img-circle" alt="50x50" style="width: 50px; height: 50px;">
                   </div>
                 </div>
                 <div class="media-body">

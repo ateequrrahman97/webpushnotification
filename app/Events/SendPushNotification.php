@@ -28,6 +28,17 @@ class SendPushNotification implements ShouldBroadcast
         $this->message  = "{$username} liked your status";
     }
 
+        /**
+     * Get the channels the event should broadcast on.
+     *
+     * @return \Illuminate\Broadcasting\Channel|array
+     */
+
+    public function broadcastAs()
+    {
+        return 'push_event';
+    }
+
     /**
      * Get the channels the event should broadcast on.
      *
@@ -35,7 +46,8 @@ class SendPushNotification implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        // return new PrivateChannel('channel-name');
-        return ['notification-sent'];
+        // return new PrivateChannel('notification-sent');
+        return new Channel('notification-sent');
+        // return ['notification-sent'];
     }
 }
